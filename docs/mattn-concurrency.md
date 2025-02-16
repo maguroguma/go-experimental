@@ -2,6 +2,8 @@ https://mattn.kaoriya.net/software/lang/go/20180531104907.htm
 
 時間がかかる処理は DB アクセスや Web API リクエストだと思って考える。
 
+`go` 命令を使い慣れてなさすぎるので、そこから問題かもしれない…。
+
 ## 作ってみる TODO
 
 - [ ] 単純な Promise なら、デフォルトサイズのチャンネルで作れそう？
