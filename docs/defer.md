@@ -13,3 +13,60 @@ AI からはこういった回答だったけど…これは後付けのよう�
 入れ子になっていようがいまいが、スタックを用いて管理されるから自然と LIFO になる、と覚えておきたい。
 
 `defer f()` で `f` を予約した、みたいなイメージだったが、スタックに積んだ、という風に考えたほうが色々と合点がいくことが多そう。
+
+## defer による return の上書き
+
+以下のよう名前付き返り値を使うと defer で結果を上書きできる。
+エラー処理とかに使える場面はありそう。
+
+```go
+func overwrite() (result int) {
+	defer func() {
+		result = 42 // return の値を書き換える
+	}()
+	return 1
+}
+```
+
+## 他言語での defer
+
+具体的には JavaScript で defer が欲しくなるときがある。
+この場合は `try finally` で実現できるっぽい。
+
+また、以下のような関数を自作すれば defer っぽいことはできるようになる。
+
+```js
+// fn に defer という関数を渡しつつ、代理で fn を実行し結果を得る
+function withDefer(fn) {
+  const deferred = []; // defer スタック
+  const defer = (callback) => deferred.push(callback);
+
+  const result = fn(defer); // 本来実行したい処理を実行する
+
+  while (deferred.length) {
+    deferred.pop()(); // LIFO で実行
+  }
+
+  return result;
+}
+
+// 例: 複数の return がある関数
+function deferExample() {
+  return withDefer((defer) => {
+    console.log("Start");
+
+    defer(() => console.log("Cleanup 1st"));
+
+    if (Math.random() > 0.5) {
+      console.log("Early return 1");
+      return "Result 1";
+    }
+
+    defer(() => console.log("Cleanup 2nd"));
+
+    console.log("Early return 2");
+    return "Result 2";
+  });
+}
+```
+
