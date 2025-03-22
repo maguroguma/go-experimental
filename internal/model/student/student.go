@@ -1,40 +1,61 @@
 package student
 
-import "github.com/maguroguma/go-experimental/internal/model/subject"
-
 type Student interface {
-	CanRegister(subject.Subject) bool
+	CanRegister(Subject) bool
+	CalculateGrade(Subject) int
+}
+
+type Subject interface {
+	CanRegisterUndergraduateStudent() bool
+	CanRegisterMasterStudent() bool
+	CanRegisterDoctorStudent() bool
+	CalculateUndergraduateStudentGrade(*UndergraduateStudent) int
+	CalculateMasterStudentGrade(*MasterStudent) int
+	CalculateDoctorStudentGrade(*DoctorStudent) int
 }
 
 type UndergraduateStudent struct {
+	Age int
 }
 
-func NewUndergraduateStudent() *UndergraduateStudent {
-	return &UndergraduateStudent{}
+func NewUndergraduateStudent(age int) *UndergraduateStudent {
+	return &UndergraduateStudent{Age: age}
 }
 
-func (u *UndergraduateStudent) CanRegister(s subject.Subject) bool {
+func (u *UndergraduateStudent) CanRegister(s Subject) bool {
 	return s.CanRegisterUndergraduateStudent()
+}
+func (u *UndergraduateStudent) CalculateGrade(s Subject) int {
+	return s.CalculateUndergraduateStudentGrade(u)
 }
 
 type MasterStudent struct {
+	Name string
 }
 
-func NewMasterStudent() *MasterStudent {
-	return &MasterStudent{}
+func NewMasterStudent(name string) *MasterStudent {
+	return &MasterStudent{Name: name}
 }
 
-func (m *MasterStudent) CanRegister(s subject.Subject) bool {
+func (m *MasterStudent) CanRegister(s Subject) bool {
 	return s.CanRegisterMasterStudent()
+}
+func (m *MasterStudent) CalculateGrade(s Subject) int {
+	return s.CalculateMasterStudentGrade(m)
 }
 
 type DoctorStudent struct {
+	Age  int
+	Name string
 }
 
-func NewDoctorStudent() *DoctorStudent {
-	return &DoctorStudent{}
+func NewDoctorStudent(age int, name string) *DoctorStudent {
+	return &DoctorStudent{Age: age, Name: name}
 }
 
-func (d *DoctorStudent) CanRegister(s subject.Subject) bool {
+func (d *DoctorStudent) CanRegister(s Subject) bool {
 	return s.CanRegisterDoctorStudent()
+}
+func (d *DoctorStudent) CalculateGrade(s Subject) int {
+	return s.CalculateDoctorStudentGrade(d)
 }
