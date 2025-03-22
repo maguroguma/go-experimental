@@ -1,10 +1,14 @@
 package student
 
+// Acceptor に相当する
+// 各メソッドは AcceptXxx に相当する
 type Student interface {
 	CanRegister(Subject) bool
 	CalculateGrade(Subject) int
 }
 
+// Visitor に相当する
+// 各メソッドは VisitXxx に相当する
 type Subject interface {
 	CanRegisterUndergraduateStudent() bool
 	CanRegisterMasterStudent() bool
