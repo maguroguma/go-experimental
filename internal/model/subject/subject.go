@@ -30,3 +30,16 @@ func (q *QuantumMechanics) CanRegisterUndergraduateStudent() bool {
 func (q *QuantumMechanics) CanRegisterMasterStudent() bool {
 	return true
 }
+
+type GraduationResearch struct {
+}
+
+func NewGraduationResearch() *GraduationResearch {
+	return &GraduationResearch{}
+}
+func (g *GraduationResearch) CanRegisterUndergraduateStudent() bool {
+	return true
+}
+func (g *GraduationResearch) CanRegisterMasterStudent() bool {
+	return true
+}

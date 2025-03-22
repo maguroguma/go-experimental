@@ -13,6 +13,7 @@ func main() {
 
 	liberalArts := subject.NewLiberalArts()
 	quantumMechanics := subject.NewQuantumMechanics()
+	graduationResearch := subject.NewGraduationResearch()
 
 	fmt.Println(
 		"under graduate student can register liberal arts: ", canRegister(undergraduateStudent, liberalArts),
@@ -25,6 +26,12 @@ func main() {
 	)
 	fmt.Println(
 		"master student can register quantum mechanics: ", canRegister(masterStudent, quantumMechanics),
+	)
+	fmt.Println(
+		"under graduate student can register graduation research: ", canRegister(undergraduateStudent, graduationResearch),
+	)
+	fmt.Println(
+		"master student can register graduation research: ", canRegister(masterStudent, graduationResearch),
 	)
 }
 
