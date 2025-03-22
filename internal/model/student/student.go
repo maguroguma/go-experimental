@@ -27,3 +27,14 @@ func NewMasterStudent() *MasterStudent {
 func (m *MasterStudent) CanRegister(s subject.Subject) bool {
 	return s.CanRegisterMasterStudent()
 }
+
+type DoctorStudent struct {
+}
+
+func NewDoctorStudent() *DoctorStudent {
+	return &DoctorStudent{}
+}
+
+func (d *DoctorStudent) CanRegister(s subject.Subject) bool {
+	return s.CanRegisterDoctorStudent()
+}

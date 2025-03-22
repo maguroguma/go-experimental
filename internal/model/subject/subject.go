@@ -3,6 +3,7 @@ package subject
 type Subject interface {
 	CanRegisterUndergraduateStudent() bool
 	CanRegisterMasterStudent() bool
+	CanRegisterDoctorStudent() bool
 }
 
 type LiberalArts struct {
@@ -15,6 +16,9 @@ func (l *LiberalArts) CanRegisterUndergraduateStudent() bool {
 	return true
 }
 func (l *LiberalArts) CanRegisterMasterStudent() bool {
+	return false
+}
+func (l *LiberalArts) CanRegisterDoctorStudent() bool {
 	return false
 }
 
@@ -30,6 +34,9 @@ func (q *QuantumMechanics) CanRegisterUndergraduateStudent() bool {
 func (q *QuantumMechanics) CanRegisterMasterStudent() bool {
 	return true
 }
+func (q *QuantumMechanics) CanRegisterDoctorStudent() bool {
+	return false
+}
 
 type GraduationResearch struct {
 }
@@ -41,5 +48,8 @@ func (g *GraduationResearch) CanRegisterUndergraduateStudent() bool {
 	return true
 }
 func (g *GraduationResearch) CanRegisterMasterStudent() bool {
+	return true
+}
+func (g *GraduationResearch) CanRegisterDoctorStudent() bool {
 	return true
 }
