@@ -6,3 +6,5 @@ require (
 	go.uber.org/dig v1.18.0
 	go.uber.org/mock v0.5.0
 )
+
+require github.com/avast/retry-go v3.0.0+incompatible // indirect
