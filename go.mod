@@ -7,4 +7,4 @@ require (
 	go.uber.org/mock v0.5.0
 )
 
-require github.com/avast/retry-go v3.0.0+incompatible // indirect
+require github.com/avast/retry-go v3.0.0+incompatible
