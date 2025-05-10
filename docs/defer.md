@@ -32,6 +32,19 @@ func overwrite() (result int) {
 }
 ```
 
+## panic 時も登録済みのものは実行される
+
+panic 時にも、panic するまでに登録されたものは、ちゃんと実行される。
+なので、以下のような defer を登録しておくことで、panic から recover することができる。
+
+```go
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Printf("recovered in testWhenPanic: %v\n", r)
+		}
+	}()
+```
+
 ## 他言語での defer
 
 具体的には JavaScript で defer が欲しくなるときがある。

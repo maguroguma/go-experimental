@@ -7,6 +7,8 @@ func main() {
 	fmt.Println("===")
 	test1(false)
 	fmt.Println("===")
+	testWhenPanic()
+	fmt.Println("===")
 
 	fmt.Println("overwrite result:", overwrite())
 }
@@ -35,4 +37,14 @@ func overwrite() (result int) {
 		result = 42 // return の値を書き換える
 	}()
 	return 1
+}
+
+func testWhenPanic() {
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Printf("recovered in testWhenPanic: %v\n", r)
+		}
+	}()
+
+	panic("panic in testWhenPanic")
 }
