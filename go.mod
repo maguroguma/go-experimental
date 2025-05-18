@@ -9,3 +9,5 @@ require (
 )
 
 require github.com/avast/retry-go v3.0.0+incompatible
+
+require github.com/golang-jwt/jwt/v5 v5.2.2 // indirect
